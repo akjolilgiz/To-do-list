@@ -15,14 +15,8 @@ $(document).ready(function(){
     $("ul#ListofTask").append("<li><span class='items'>" + newToDoList.itemName + "</span></li>");
 
     $(".items").last().click(function(){
-
       $(".finishedItems").append("<li>"+ newToDoList.itemName + "</li>");
-
-      $(".items").hide("<li>" + newToDoList.itemName + "</li>");
-
-
-
-
+      $(this).hide();
     })
 
     $("input#newItem").val('')
