@@ -1,7 +1,12 @@
 // business logic
-function ToDoList (item){
-  this.itemName = item;
+function ToDoList (item, time){
+  this.itemName = item
+  this.timeName = time;
 }
+ToDoList.prototype.DoneBy = function() {
+  return this.itemName + " by: " + this.timeName;
+}
+
 
 //user interface logic
 $(document).ready(function(){
@@ -9,13 +14,13 @@ $(document).ready(function(){
     event.preventDefault();
 
     var inputtedItem = $("input#newItem").val();
+    var doBy = $("input#doBy").val()
+    var newToDoList = new ToDoList(inputtedItem, doBy);
 
-    var newToDoList = new ToDoList(inputtedItem);
-
-    $("ul#ListofTask").append("<li><span class='items'>" + newToDoList.itemName + "</span></li>");
+    $("ul#ListofTask").append("<li><span class='items'>" + newToDoList.DoneBy() + "</span></li>");
 
     $(".items").last().click(function(){
-      $(".finishedItems").append("<li>"+ newToDoList.itemName + "</li>");
+      $(".finishedItems").append("<li>"+ newToDoList.DoneBy() + "</li>");
       $(this).hide();
     })
 
